@@ -1,24 +1,26 @@
 const readArgs = require("./lib/readArgs")
-const filterAnimalsByFilterParam = require("./lib/filterAnimalsByFilterParam")
+const filterAnimalsByFilterParam = require("./lib/filterDataByAnimalsSearchName")
 const countData = require("./lib/countData")
 const {data} = require("./data")
+const printResult = require("./lib/printResult")
+
 
 const main = () => {
     try   {
         const [_process, _indexFile, ...args] = process.argv
-       const {filter, count} = readArgs(args)
+       const {filterArg, countArg} = readArgs(args)
         let results = [...data]
-        if(filter){
-            results = filterAnimalsByFilterParam(data, filter)
+        if(filterArg){
+            results = filterAnimalsByFilterParam(results, filterArg)
         }
-        if (count){
+        if (countArg){
             results= countData(results)
         }
         if (!results.length){
             console.log("no results")
             process.exit(0)
         }
-        console.log(results)
+        printResult(results)
         process.exit(0)
     }catch (e) {
         console.error("### Error ###", e.message)

@@ -9,6 +9,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "16.17.0"
+  },
   "dependencies": {
     "jest": "^29.0.3"
   }
